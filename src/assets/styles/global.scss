@@ -1,0 +1,23 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+.mainHeader {
+  position: relative !important;
+  z-index: 10000 !important;
+}
+.mainWrap {
+  overflow-x: hidden;
+  background: #fefefe;
+}
+
+.coffeeImg {
+  height: 150px;
+  background-position: center center !important;
+}
+.baristaPageDrawer {
+  .MuiDrawer-paper {
+    min-width: 400px;
+  }
+}
