@@ -1,14 +1,9 @@
-import React, {useState} from "react";
 import Drawer from "@material-ui/core/Drawer";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
 import Box from "@material-ui/core/Box";
+import {useSelector} from "react-redux";
 
-export const AppDrawer = () => {
-    const [drawerStatus, setDrawerStatus ]= useState(false);
-    const closeDrawer = () => {
-        setDrawerStatus(false);
-    }
+export const AppDrawer = (props) => {
+    const drawerStatus = useSelector((state) => {return state.drawerStatus.isOpen})
     return (
         <>
             <Drawer
@@ -18,7 +13,7 @@ export const AppDrawer = () => {
                 // onClose={() => closeDrawer()}
                 variant="persistent"
             >
-               <Box pt={10} px={2}>
+               <Box pt={10} px={2} width={`${props.drawerWidth}px`}>
                     <p>111</p>
                </Box>
 
