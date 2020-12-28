@@ -4,30 +4,36 @@ import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import Card from "@material-ui/core/Card";
 import Grid from "@material-ui/core/Grid";
-import {useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
+import {setBaristaActiveProduct} from "../../../redux/actions/baristaActiveProduct";
+import {showDrawer} from "../../../redux/actions/drawerStatusAction";
 
 
 export const BaristaPageCard = (props) => {
-    const {img, name, text} = props.product;
-    const isDrawerOpen = useSelector(state => {return state.drawerStatus.isOpen});
+    const dispatch = useDispatch();
+    const handleCardClick = () => {
+        dispatch(setBaristaActiveProduct(props.product));
+        dispatch(showDrawer())
+    }
+
 
     return (
         <Grid item xs={2}>
-            <Card >
-            <CardActionArea>
-                <CardMedia
-                    className="coffeeImg"
-                    image={img}
-                    title={name}
-                />
-                <CardContent>
-                    <Typography gutterBottom variant="h5" component="h2">
-                        {name}
-                    </Typography>
-                    <Typography variant="body2" color="textSecondary" component="p">{text}</Typography>
-                </CardContent>
-            </CardActionArea>
-        </Card>
+            <Card onClick={() => handleCardClick()}>
+                <CardActionArea>
+                    <CardMedia
+                        className="coffeeImg"
+                        image={props.product.img}
+                        title={props.product.name}
+                    />
+                    <CardContent>
+                        <Typography gutterBottom variant="h5" component="h2">
+                            {props.product.name}
+                        </Typography>
+                        <Typography variant="body2" color="textSecondary" component="p">{props.product.text}</Typography>
+                    </CardContent>
+                </CardActionArea>
+            </Card>
         </Grid>
     )
 }

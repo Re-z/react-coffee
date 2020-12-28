@@ -2,6 +2,8 @@ import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import {BaristaPageCard} from "../BaristaPageCard";
 import Box from "@material-ui/core/Box";
+import {useDispatch} from "react-redux";
+import {showDrawer} from "../../../redux/actions/drawerStatusAction";
 
 const products = [
     {
@@ -87,6 +89,7 @@ const products = [
 ]
 
 export const BaristaPageProducts = () => {
+
     return (
         <Box px={2}>
             <Typography paragraph variant="h4">Barista page</Typography>
