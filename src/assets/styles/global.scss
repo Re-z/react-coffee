@@ -24,3 +24,10 @@
 .width50 {
   width: 50% !important;
 }
+.scrolableDiv {
+  flex: 1;
+  overflow: auto;
+}
+.fullHeight {
+  height: 100%;
+}

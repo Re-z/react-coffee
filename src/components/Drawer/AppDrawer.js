@@ -10,7 +10,7 @@ import {BaristaDrawer} from "../../modules/BaristaPage/BaristaDrawer";
 export const AppDrawer = (props) => {
     const dispatch = useDispatch();
     const drawerStatus = useSelector((state) => {return state.drawerStatus.isOpen})
-
+    const drawerPadding = 2;
 
     return (
             <Drawer
@@ -20,26 +20,13 @@ export const AppDrawer = (props) => {
                 variant="persistent"
             >
                <Box
-                   pt={10}
-                   pb={5}
-                   px={2}
+
+                   className="fullHeight"
                    width={`${props.drawerWidth}px`}
                >
-                   <Box
-                       display="flex"
-                       justifyContent="space-between"
-                       alignItems="center"
-                   >
-                       <Typography variant="h5">Order</Typography>
-                       <IconButton
-                           color="inherit"
-                           onClick={() => dispatch(hideDrawer())}
-                       >
-                           <CloseIcon />
-                       </IconButton>
-                   </Box>
 
-                  <BaristaDrawer />
+
+                  <BaristaDrawer drawerPadding={drawerPadding}/>
 
                </Box>
             </Drawer>

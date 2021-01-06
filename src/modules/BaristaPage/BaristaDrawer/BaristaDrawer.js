@@ -9,8 +9,11 @@ import {hideDrawer} from "../../../redux/actions/drawerStatusAction";
 import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {BaristaDrawerOrderedProduct} from '../BaristaDrawerOrderedItem'
+import Divider from '@material-ui/core/Divider';
+import IconButton from "@material-ui/core/IconButton";
+import CloseIcon from "@material-ui/icons/Close";
 
-export const BaristaDrawer = () => {
+export const BaristaDrawer = (props) => {
     const dispatch = useDispatch();
     const activeProduct = useSelector((state) => {return state.baristaActiveProduct.product});
     const [chosenSize, setChosenSize] = useState({});
@@ -39,102 +42,143 @@ export const BaristaDrawer = () => {
 
     const calculateTotalPrice = () => {
         //why reduce doesnt work?
-            let a = 0;
-            orderedProducts.forEach(product => {
-               a = a + product.chosenSize.price
-           })
-            return a;
+        let price = 0;
+        orderedProducts.forEach(product => {
+           price = price + product.chosenSize.price
+       })
+        return price;
 
     }
-
     return (
-        <>
-            {activeProduct && (
-                <Card>
-                    <CardMedia
-                        className="coffeeImg, coffeeImg_drawer"
-                        image={activeProduct.img}
-                        title={activeProduct.name}
-                    />
-                    <CardContent>
-                        <Typography
-                            gutterBottom
-                            variant="h5"
-                            component="h2">
-                            {activeProduct.name}
-                        </Typography>
-                        <Box
-                            mt={2}
-                            display="flex"
-                            justifyContent="space-between"
-                            alignItems="center">
-                            <Typography>Choose size:</Typography>
-                            <Box>
-                                {
-                                    activeProduct.sizes.map (size => {
-                                        return (
-                                            <Button
-                                                key={size.size}
-                                                onClick={() => {setChosenSize(size)}}
-                                                size="small"
-                                                color="primary"
-                                                variant={chosenSize === size ? 'contained' : 'text'}
-                                            >
-                                                {size.size}
-                                            </Button>
+        <Box
+            className="fullHeight"
+            display="flex"
+            flexDirection="column"
+            justifyContent="space-between">
+            <Box pt={10}>
+                <Box
+                    display="flex"
+                    justifyContent="space-between"
+                    alignItems="center"
+                    px={props.drawerPadding}
+                >
+                    <Typography  variant="h5">Order</Typography>
+                    <IconButton
+                        color="inherit"
+                        onClick={() => dispatch(hideDrawer())}
+                    >
+                        <CloseIcon />
+                    </IconButton>
+                </Box>
+                {activeProduct && (
+                    <Box px={props.drawerPadding}>
+                        <Card>
+                            <CardMedia
+                                className="coffeeImg, coffeeImg_drawer"
+                                image={activeProduct.img}
+                                title={activeProduct.name}
+                            />
+                            <CardContent>
+                                <Typography
+                                    gutterBottom
+                                    variant="h5"
+                                    component="h2">
+                                    {activeProduct.name}
+                                </Typography>
+                                <Box
+                                    mt={2}
+                                    display="flex"
+                                    justifyContent="space-between"
+                                    alignItems="center">
+                                    <Typography>Choose size:</Typography>
+                                    <Box>
+                                        {
+                                            activeProduct.sizes.map (size => {
+                                                return (
+                                                    <Button
+                                                        key={size.size}
+                                                        onClick={() => {setChosenSize(size)}}
+                                                        size="small"
+                                                        color="primary"
+                                                        variant={chosenSize === size ? 'contained' : 'text'}
+                                                    >
+                                                        {size.size}
+                                                    </Button>
 
-                                        )
-                                    })
-                                }
-                            </Box>
-                        </Box>
-                        <Box
-                            mt={2}
-                            display="flex"
-                            justifyContent="space-between"
-                            alignItems="center">
-                            <Typography>Price:</Typography>
-                            <Typography><strong>$ {chosenSize.price}</strong></Typography>
-                        </Box>
+                                                )
+                                            })
+                                        }
+                                    </Box>
+                                </Box>
+                                <Box
+                                    mt={2}
+                                    display="flex"
+                                    justifyContent="space-between"
+                                    alignItems="center">
+                                    <Typography>Price:</Typography>
+                                    <Typography><strong>$ {chosenSize.price}</strong></Typography>
+                                </Box>
 
-                    </CardContent>
-                    <CardActions>
-                        <Button
-                            disabled={!chosenSize}
-                            variant="outlined"
-                            color="primary"
-                            onClick={() => {handleAddToOrder(chosenSize)}}
-                        >
-                            Add to order
-                        </Button>
-                    </CardActions>
-                </Card>
+                            </CardContent>
+                            <CardActions>
+                                <Button
+                                    disabled={!chosenSize}
+                                    variant="outlined"
+                                    color="primary"
+                                    onClick={() => {handleAddToOrder(chosenSize)}}
+                                >
+                                    Add to order
+                                </Button>
+                            </CardActions>
+                        </Card>
+                    </Box>
 
-            )}
+                )}
+            </Box>
+
             {
                 orderedProducts.length !== 0 && (
-                    <Box mt={4}>
-                        <Typography variant="h6">Ordered items:</Typography>
+                    <Box
+                        px={props.drawerPadding}
+                        mt={4}
+                        className="scrolableDiv"
+
+                    >
+                        <Box
+                            display="flex"
+                            alignItems="center"
+                            justifyContent="space-between"
+                        >
+                            <Typography variant="h6">Ordered items:</Typography>
+                            <Typography><strong><i>Total: ${calculateTotalPrice()}</i></strong></Typography>
+                        </Box>
                         {
                             orderedProducts.map((product,index) => {
                                 return (
                                     <BaristaDrawerOrderedProduct
                                         key={index}
                                         product={product}
+                                        isDividerShown={orderedProducts.length - 1 !== index}
                                     />
                                 )
                             })
                         }
+                </Box>
+
+                )
+            }
+
+            {/*buttons*/}
+            {
+                orderedProducts.length !== 0 && (
+                    <Box py={2} className="baristaDrawerBtns">
+                        <Divider />
                         <Box
-                            display="flex"
-                            justifyContent="flex-end"
                             mt={2}
-                        >
-                            <Typography>
-                                <strong><i>Total: ${calculateTotalPrice()}</i></strong>
-                            </Typography>
-                        </Box>
-                        <Box mt={5} display="flex" justifyContent="space-between">
+                            px={props.drawerPadding}
+                            className=""
+                            display="flex"
+                            justifyContent="space-between">
                             <Button
                                 className="width50"
                                 color="primary"
@@ -147,15 +191,16 @@ export const BaristaDrawer = () => {
                                 className="width50"
                                 color="primary"
                                 size="large"
-                                // variant="contained"
                             >
                                 Cancel order
                             </Button>
                         </Box>
                     </Box>
-
                 )
             }
-        </>
+
+            {/*end buttons*/}
+
+        </Box>
     )
 }
