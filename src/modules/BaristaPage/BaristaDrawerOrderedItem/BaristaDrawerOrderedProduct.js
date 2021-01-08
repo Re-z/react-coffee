@@ -4,7 +4,6 @@ import Typography from "@material-ui/core/Typography";
 import Divider from "@material-ui/core/Divider";
 
 export const BaristaDrawerOrderedProduct = (props) => {
-    console.log(props.isDividerShown)
     return (
        <Box mt={2}>
            <Box

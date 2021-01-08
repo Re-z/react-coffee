@@ -12,12 +12,16 @@ import {BaristaDrawerOrderedProduct} from '../BaristaDrawerOrderedItem'
 import Divider from '@material-ui/core/Divider';
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
+import {setOrders} from '../../../redux/actions/ordersAction'
+import {showSnackbar} from '../../../redux/actions/snackbarStatusActions'
 
-export const BaristaDrawer = (props) => {
+const drawerPadding = 2;
+
+export const BaristaDrawer = () => {
     const dispatch = useDispatch();
     const activeProduct = useSelector((state) => {return state.baristaActiveProduct.product});
     const [chosenSize, setChosenSize] = useState({});
-    const [orderedProducts, setOrderedProducts] = useState([])
+    const [orderedProducts, setOrderedProducts] = useState([]);
 
     useEffect(() => {
         //set initial value for active product size
@@ -25,8 +29,6 @@ export const BaristaDrawer = (props) => {
             setChosenSize(activeProduct.sizes[0])
         }
     }, [activeProduct])
-
-
 
     const handleAddToOrder = (chosenSize) => {
         const newOrderedProduct = {
@@ -36,9 +38,7 @@ export const BaristaDrawer = (props) => {
         setOrderedProducts(prevState => {
             return [...prevState, newOrderedProduct]
         })
-
     }
-
 
     const calculateTotalPrice = () => {
         //why reduce doesnt work?
@@ -47,20 +47,41 @@ export const BaristaDrawer = (props) => {
            price = price + product.chosenSize.price
        })
         return price;
-
     }
+    const resetDrawer = () => {
+        setOrderedProducts([]);
+        dispatch(hideDrawer());
+    }
+    const handleCancelOrder = () => {
+        resetDrawer();
+        dispatch(showSnackbar('Order cancelled'))
+    }
+
+    const handleConfirmOrder = () => {
+        const orders = orderedProducts.map(product => {
+            return {
+                ...product,
+                orderTime: Date.now()
+            }
+        })
+        dispatch(setOrders(orders));
+        dispatch(showSnackbar('Order confirmed'))
+        resetDrawer()
+    }
+
     return (
         <Box
             className="fullHeight"
             display="flex"
             flexDirection="column"
-            justifyContent="space-between">
+            justifyContent="space-between"
+            px={2}
+        >
             <Box pt={10}>
                 <Box
                     display="flex"
                     justifyContent="space-between"
                     alignItems="center"
-                    px={props.drawerPadding}
                 >
                     <Typography  variant="h5">Order</Typography>
                     <IconButton
@@ -71,78 +92,72 @@ export const BaristaDrawer = (props) => {
                     </IconButton>
                 </Box>
                 {activeProduct && (
-                    <Box px={props.drawerPadding}>
-                        <Card>
-                            <CardMedia
-                                className="coffeeImg, coffeeImg_drawer"
-                                image={activeProduct.img}
-                                title={activeProduct.name}
-                            />
-                            <CardContent>
-                                <Typography
-                                    gutterBottom
-                                    variant="h5"
-                                    component="h2">
-                                    {activeProduct.name}
-                                </Typography>
-                                <Box
-                                    mt={2}
-                                    display="flex"
-                                    justifyContent="space-between"
-                                    alignItems="center">
-                                    <Typography>Choose size:</Typography>
-                                    <Box>
-                                        {
-                                            activeProduct.sizes.map (size => {
-                                                return (
-                                                    <Button
-                                                        key={size.size}
-                                                        onClick={() => {setChosenSize(size)}}
-                                                        size="small"
-                                                        color="primary"
-                                                        variant={chosenSize === size ? 'contained' : 'text'}
-                                                    >
-                                                        {size.size}
-                                                    </Button>
-
-                                                )
-                                            })
-                                        }
-                                    </Box>
+                    <Card>
+                        <CardMedia
+                            className="coffeeImg, coffeeImg_drawer"
+                            image={activeProduct.img}
+                            title={activeProduct.name}
+                        />
+                        <CardContent>
+                            <Typography
+                                gutterBottom
+                                variant="h5"
+                                component="h2">
+                                {activeProduct.name}
+                            </Typography>
+                            <Box
+                                mt={2}
+                                display="flex"
+                                justifyContent="space-between"
+                                alignItems="center">
+                                <Typography>Choose size:</Typography>
+                                <Box>
+                                    {
+                                        activeProduct.sizes.map (size => {
+                                            return (
+                                                <Button
+                                                    key={size.size}
+                                                    onClick={() => {setChosenSize(size)}}
+                                                    size="small"
+                                                    color="primary"
+                                                    variant={chosenSize === size ? 'contained' : 'text'}
+                                                >
+                                                    {size.size}
+                                                </Button>
+                                            )
+                                        })
+                                    }
                                 </Box>
-                                <Box
-                                    mt={2}
-                                    display="flex"
-                                    justifyContent="space-between"
-                                    alignItems="center">
-                                    <Typography>Price:</Typography>
-                                    <Typography><strong>$ {chosenSize.price}</strong></Typography>
-                                </Box>
+                            </Box>
+                            <Box
+                                mt={2}
+                                display="flex"
+                                justifyContent="space-between"
+                                alignItems="center">
+                                <Typography>Price:</Typography>
+                                <Typography><strong>$ {chosenSize.price}</strong></Typography>
+                            </Box>
 
-                            </CardContent>
-                            <CardActions>
-                                <Button
-                                    disabled={!chosenSize}
-                                    variant="outlined"
-                                    color="primary"
-                                    onClick={() => {handleAddToOrder(chosenSize)}}
-                                >
-                                    Add to order
-                                </Button>
-                            </CardActions>
-                        </Card>
-                    </Box>
-
+                        </CardContent>
+                        <CardActions>
+                            <Button
+                                disabled={!chosenSize}
+                                variant="outlined"
+                                color="primary"
+                                onClick={() => {handleAddToOrder(chosenSize)}}
+                            >
+                                Add to order
+                            </Button>
+                        </CardActions>
+                    </Card>
                 )}
             </Box>
 
             {
                 orderedProducts.length !== 0 && (
                     <Box
-                        px={props.drawerPadding}
                         mt={4}
                         className="scrolableDiv"
-
                     >
                         <Box
                             display="flex"
@@ -175,7 +190,6 @@ export const BaristaDrawer = (props) => {
                         <Divider />
                         <Box
                             mt={2}
-                            px={props.drawerPadding}
                             className=""
                             display="flex"
                             justifyContent="space-between">
@@ -184,6 +198,7 @@ export const BaristaDrawer = (props) => {
                                 color="primary"
                                 size="large"
                                 variant="contained"
+                                onClick={() => handleConfirmOrder()}
                             >
                                 Confirm order
                             </Button>
@@ -191,6 +206,7 @@ export const BaristaDrawer = (props) => {
                                 className="width50"
                                 color="primary"
                                 size="large"
+                                onClick={() => handleCancelOrder()}
                             >
                                 Cancel order
                             </Button>
@@ -200,7 +216,6 @@ export const BaristaDrawer = (props) => {
             }
 
             {/*end buttons*/}
-
         </Box>
     )
 }

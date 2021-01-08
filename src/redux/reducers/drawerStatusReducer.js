@@ -1,8 +1,11 @@
-import {drawerStatus} from "../state/drawerStatus";
 
 import {reduxConstants} from '../constants';
 
-export const drawerStatusReducer = (state = drawerStatus, action) => {
+const initialState = {
+    isOpen: false
+}
+
+export const drawerStatusReducer = (state = initialState, action) => {
     switch (action.type) {
         case(reduxConstants.SHOW_DRAWER): {
             return {
