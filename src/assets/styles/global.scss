@@ -3,6 +3,14 @@
   margin: 0;
   box-sizing: border-box;
 }
+a {
+  text-decoration: none;
+  color: inherit;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
 .mainHeader {
   position: relative !important;
   z-index: 10000 !important;
@@ -30,4 +38,10 @@
 }
 .fullHeight {
   height: 100%;
+}
+.navLinkActive {
+  text-decoration: underline;
+}
+.tableRowOdd {
+  background: #fafafa;
 }

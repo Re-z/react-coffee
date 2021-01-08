@@ -3,7 +3,6 @@ import Grid from "@material-ui/core/Grid";
 import {BaristaPageCard} from "../BaristaPageCard";
 import Box from "@material-ui/core/Box";
 
-
 const products = [
     {
         id: 0,
@@ -267,17 +266,12 @@ const products = [
 
 
 
-
-
-
-
-
 ]
 
-export const BaristaPageProducts = () => {
+export const BaristaPage = () => {
 
     return (
-        <Box px={2}>
+        <>
             <Typography paragraph variant="h4">Barista page</Typography>
             <Grid container spacing={2}>
                 {
@@ -291,6 +285,6 @@ export const BaristaPageProducts = () => {
                     })
                 }
             </Grid>
-        </Box>
+        </>
     )
 }

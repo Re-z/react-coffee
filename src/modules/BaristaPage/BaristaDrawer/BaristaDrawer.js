@@ -23,6 +23,7 @@ export const BaristaDrawer = () => {
     const [chosenSize, setChosenSize] = useState({});
     const [orderedProducts, setOrderedProducts] = useState([]);
 
+    console.log(chosenSize)
     useEffect(() => {
         //set initial value for active product size
         if(activeProduct) {

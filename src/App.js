@@ -2,9 +2,12 @@ import {Header} from "./components/Header/index";
 import Box from "@material-ui/core/Box";
 import {AppDrawer} from "./components/Drawer";
 import {useDispatch, useSelector} from "react-redux";
-import {BaristaPageProducts} from "./modules/BaristaPage/BaristaPageProducts";
+import {BaristaPage} from "./modules/BaristaPage/BaristaPage";
 import Snackbar from '@material-ui/core/Snackbar';
 import {hideSnackbar} from "./redux/actions/snackbarStatusActions";
+import  {Route, Switch} from 'react-router-dom'
+import {OrdersPage} from "./modules/OrdersPage/OrdersPage";
+
 const drawerWidth = 450;
 
 export const App = () => {
@@ -17,8 +20,12 @@ export const App = () => {
         <>
             <Header />
             <Box component="main" className="mainWrap" pr={drawerStatus ? `${drawerWidth}px` : 0}>
-                <Box py={6}>
-                    <BaristaPageProducts />
+                <Box py={6} px={2}>
+                    <Switch>
+                        <Route exact path="/" component={BaristaPage} />
+                        <Route exact path="/orders" component={OrdersPage} />
+                    </Switch>
+
                     <AppDrawer drawerWidth={drawerWidth}/>
                 </Box>
 
