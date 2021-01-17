@@ -10,18 +10,21 @@ const setOrders = (orders) => {
     }
 };
 
-const convertDBObjectToArray = (ordersObj) => {
-    let ordersArr = [];
-    for (let prop in ordersObj) {
-        ordersArr.push(...ordersObj[prop])
-    };
-    return ordersArr;
+export const setLasOrderId = (id) => {
+    return {
+        type: reduxConstants.SET_LAST_ORDER_ID,
+        payload: {lastOrderId: id}
+    }
 }
 
+const convertDBObjectToArray = (DBObject) => {
+    return Object.values(DBObject).flat(Infinity)
+}
 
 export const postOrdersToDB = (ordersArr) => {
     return (dispatch) => {
-        fetch(url, {
+
+        const pr = fetch(url, {
             method: 'POST',
             mode: 'no-cors',
             headers: {
@@ -29,8 +32,10 @@ export const postOrdersToDB = (ordersArr) => {
             },
             body: JSON.stringify(ordersArr)
         })
-            .then( dispatch(showSnackbar('Order confirmed')) )
-            .catch( dispatch(showSnackbar('Something went wrong')) )
+            .then(() => dispatch( showSnackbar('Order confirmed')) )
+            .catch(() => dispatch( showSnackbar('Something went wrong')) )
+        console.log(pr)
+        return pr;
     }
 }
 
@@ -42,4 +47,5 @@ export const getOrdersFromDB = () => {
             .then(orders => dispatch(setOrders((convertDBObjectToArray(orders)))))
     }
 }
+
 

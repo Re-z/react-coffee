@@ -1,7 +1,8 @@
 import {reduxConstants} from '../constants';
 
 const initialState = {
-    items: []
+    items: [],
+    lastOrderId: null
 };
 
 export const ordersReducer = (state = initialState, action) => {
@@ -9,8 +10,14 @@ export const ordersReducer = (state = initialState, action) => {
         case (reduxConstants.SET_ORDERS):
             return {
                 ...state,
-                items: [...state.items, ...action.payload]
+                items: action.payload
             }
+        case (reduxConstants.SET_LAST_ORDER_ID):
+            return {
+                ...state,
+                lastOrderId: action.payload
+            }
+
         default:
             return state
     }

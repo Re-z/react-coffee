@@ -7,10 +7,11 @@ import {getOrdersFromDB} from "../../../redux/actions/ordersAction";
 export const OrdersPage = () => {
     const dispatch = useDispatch();
     const orders = useSelector(state => state.orders.items);
+    const lastOrderId = useSelector(state => state.orders.lastOrderId)
 
     useEffect(() => {
-        !orders.length && dispatch(getOrdersFromDB());
-    }, [])
+        dispatch(getOrdersFromDB());
+    }, [dispatch, lastOrderId])
 
     return (
         <>

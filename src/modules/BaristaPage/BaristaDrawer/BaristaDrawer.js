@@ -12,7 +12,7 @@ import {BaristaDrawerOrderedProduct} from '../BaristaDrawerOrderedItem'
 import Divider from '@material-ui/core/Divider';
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
-import {postOrdersToDB} from '../../../redux/actions/ordersAction'
+import {postOrdersToDB, setLasOrderId} from '../../../redux/actions/ordersAction'
 import {showSnackbar} from '../../../redux/actions/snackbarStatusActions'
 
 const drawerPadding = 2;
@@ -58,13 +58,16 @@ export const BaristaDrawer = () => {
     }
 
     const handleConfirmOrder = () => {
+        const currentTime = Date.now()
         const orders = orderedProducts.map(product => {
             return {
                 ...product,
-                orderTime: Date.now()
+                orderTime: currentTime
             }
         })
-        dispatch(postOrdersToDB(orders));
+        dispatch(postOrdersToDB(orders))
+            .then(() => dispatch(setLasOrderId(currentTime)))
+
         resetDrawer()
     }
 
