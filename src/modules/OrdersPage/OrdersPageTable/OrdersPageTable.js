@@ -7,14 +7,15 @@ import TableBody from "@material-ui/core/TableBody";
 import Paper from "@material-ui/core/Paper";
 
 import {formatDateToString} from '../../../utils/dateFormatters'
-import {toUpperCase} from '../../../utils/textFormatters'
+import {formatTextToUpperCase} from '../../../utils/textFormatters'
+
 
 export const OrdersPageTable = (props) => {
    const orders = props.orders;
 
     return (
         <TableContainer component={Paper}>
-            <Table aria-label="a dense table">
+            <Table>
                 <TableHead>
                     <TableRow>
                         <TableCell><strong>#ID</strong></TableCell>
@@ -34,14 +35,13 @@ export const OrdersPageTable = (props) => {
                                 >
                                     <TableCell>{ index + 1 }</TableCell>
                                     <TableCell>{ order.name }</TableCell>
-                                    <TableCell>{ toUpperCase(order.chosenSize.size) }</TableCell>
+                                    <TableCell>{ formatTextToUpperCase(order.chosenSize.size) }</TableCell>
                                     <TableCell>{ formatDateToString(order.orderTime) }</TableCell>
                                     <TableCell>{ order.chosenSize.price }</TableCell>
                                 </TableRow>
                             )
                         })
                     }
-
                 </TableBody>
             </Table>
         </TableContainer>

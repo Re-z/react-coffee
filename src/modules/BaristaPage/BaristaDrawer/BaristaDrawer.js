@@ -12,7 +12,7 @@ import {BaristaDrawerOrderedProduct} from '../BaristaDrawerOrderedItem'
 import Divider from '@material-ui/core/Divider';
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
-import {setOrders} from '../../../redux/actions/ordersAction'
+import {postOrdersToDB} from '../../../redux/actions/ordersAction'
 import {showSnackbar} from '../../../redux/actions/snackbarStatusActions'
 
 const drawerPadding = 2;
@@ -23,7 +23,6 @@ export const BaristaDrawer = () => {
     const [chosenSize, setChosenSize] = useState({});
     const [orderedProducts, setOrderedProducts] = useState([]);
 
-    console.log(chosenSize)
     useEffect(() => {
         //set initial value for active product size
         if(activeProduct) {
@@ -65,8 +64,7 @@ export const BaristaDrawer = () => {
                 orderTime: Date.now()
             }
         })
-        dispatch(setOrders(orders));
-        dispatch(showSnackbar('Order confirmed'))
+        dispatch(postOrdersToDB(orders));
         resetDrawer()
     }
 
@@ -215,7 +213,6 @@ export const BaristaDrawer = () => {
                     </Box>
                 )
             }
-
             {/*end buttons*/}
         </Box>
     )

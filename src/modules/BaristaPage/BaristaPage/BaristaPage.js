@@ -264,8 +264,6 @@ const products = [
         ]
     },
 
-
-
 ]
 
 export const BaristaPage = () => {
