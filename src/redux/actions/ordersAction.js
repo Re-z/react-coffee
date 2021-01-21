@@ -24,7 +24,7 @@ const convertDBObjectToArray = (DBObject) => {
 export const postOrdersToDB = (ordersArr) => {
     return (dispatch) => {
 
-        const pr = fetch(url, {
+        const postOrders = fetch(url, {
             method: 'POST',
             mode: 'no-cors',
             headers: {
@@ -34,8 +34,7 @@ export const postOrdersToDB = (ordersArr) => {
         })
             .then(() => dispatch( showSnackbar('Order confirmed')) )
             .catch(() => dispatch( showSnackbar('Something went wrong')) )
-        console.log(pr)
-        return pr;
+        return postOrders;
     }
 }
 

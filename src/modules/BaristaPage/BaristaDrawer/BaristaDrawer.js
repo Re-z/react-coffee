@@ -15,7 +15,6 @@ import CloseIcon from "@material-ui/icons/Close";
 import {postOrdersToDB, setLasOrderId} from '../../../redux/actions/ordersAction'
 import {showSnackbar} from '../../../redux/actions/snackbarStatusActions'
 
-const drawerPadding = 2;
 
 export const BaristaDrawer = () => {
     const dispatch = useDispatch();
