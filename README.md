@@ -1,3 +1,9 @@
+TODO:
+- UseReducer in filters
+- Make Header fixed
+- Make loading spinners
+- Sort by size is filterring incorrectly
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

@@ -30,7 +30,7 @@ export const OrdersPageTable = (props) => {
                 <Table>
                     <TableHead>
                         <TableRow>
-                            <TableCell><strong>#ID</strong></TableCell>
+                            <TableCell><strong>#</strong></TableCell>
                             <TableCell><strong>Name</strong> </TableCell>
                             <TableCell><strong>Size</strong> </TableCell>
                             <TableCell><strong>Date</strong> </TableCell>
