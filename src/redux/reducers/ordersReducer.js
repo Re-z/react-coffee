@@ -17,7 +17,6 @@ export const ordersReducer = (state = initialState, action) => {
                 ...state,
                 lastOrderId: action.payload
             }
-
         default:
             return state
     }

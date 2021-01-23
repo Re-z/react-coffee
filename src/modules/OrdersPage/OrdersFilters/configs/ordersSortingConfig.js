@@ -24,7 +24,6 @@ const sortByName = (orders) => {
         }
         return 0;
     }
-
     return ([...orders.sort(compare)])
 }
 
@@ -54,7 +53,7 @@ const sortByPrice = (orders) => {
 }
 
 
-export const ordersSorting = [
+export const ordersSortingConfig = [
     {
         name: reduxConstants.SORT_ORDERS_BY_TIME,
         btnLabel: 'Date',

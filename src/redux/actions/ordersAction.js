@@ -1,5 +1,6 @@
 import {showSnackbar} from "./snackbarStatusActions";
 import {reduxConstants} from "../constants";
+import axios from "axios";
 
 const url = 'https://react-coffee-629c8-default-rtdb.firebaseio.com/orders.json'
 
@@ -23,28 +24,20 @@ const convertDBObjectToArray = (DBObject) => {
 
 export const postOrdersToDB = (ordersArr) => {
     return (dispatch) => {
-
-        const postOrders = fetch(url, {
-            method: 'POST',
-            mode: 'no-cors',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(ordersArr)
-        })
+        const postOrders = axios.post(url, ordersArr)
             .then(() => dispatch( showSnackbar('Order confirmed')) )
             .catch(() => dispatch( showSnackbar('Something went wrong')) )
         return postOrders;
     }
 }
 
-
 export const getOrdersFromDB = () => {
     return (dispatch) => {
-        fetch(url)
-            .then(data => data.json())
-            .then(orders => dispatch(setOrders((convertDBObjectToArray(orders)))))
-    }
+        axios.get(url)
+            .then(orders =>
+                dispatch(setOrders((convertDBObjectToArray(orders.data))))
+            )
+        }
 }
 
 

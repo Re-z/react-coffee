@@ -1,24 +1,16 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import Box from "@material-ui/core/Box";
-import {ordersSorting} from './configs/ordersSortingConfig';
+import {ordersSortingConfig} from './configs/ordersSortingConfig';
 import {ordersAscendance} from "./configs/ordersAscendanceConfig";
 
-const initialSort = ordersSorting[0];
-
-
 export const OrdersFilters = (props) => {
-    const [activeSort, setActiveSort] = useState(initialSort);
-    const [isAscendant, setIsAscendant] = useState(true);
-
-    useEffect(() => {
-        props.setSortedOrders(initialSort.action(props.sortedOrders))
-    }, [])
+    const [activeSort, setActiveSort] = useState(props.initialSort);
 
     const handleAscendance = (ascendance) => {
-        if(isAscendant !== ascendance) {
-            setIsAscendant(ascendance);
+        if(props.isSortAscendant !== ascendance) {
+            props.setIsSortAscendant(ascendance);
             props.setSortedOrders([...props.sortedOrders.reverse()])
         }
     }
@@ -28,7 +20,7 @@ export const OrdersFilters = (props) => {
             <Box display="flex" alignItems="center">
                 <Typography>Sort by:</Typography>
                 {
-                    ordersSorting && ordersSorting.map(sort => {
+                    ordersSortingConfig && ordersSortingConfig.map(sort => {
                         return (
                             <Box ml={1} key={sort.name}>
                                 <Button
@@ -38,7 +30,7 @@ export const OrdersFilters = (props) => {
                                     onClick={() => {
                                         props.setSortedOrders(sort.action(props.sortedOrders));
                                         setActiveSort(sort);
-                                        setIsAscendant(true)
+                                        props.setIsSortAscendant(true)
                                     }}
                                 >
                                     {sort.btnLabel}
@@ -53,9 +45,9 @@ export const OrdersFilters = (props) => {
                     {
                         ordersAscendance && ordersAscendance.map(ascendance => {
                             return (
-                                <Box ml={1}>
+                                <Box ml={1} key={ascendance.btnLabel}>
                                     <Button
-                                        variant={ascendance.isAscendant === isAscendant ? 'contained' : 'text'}
+                                        variant={ascendance.isAscendant === props.isSortAscendant ? 'contained' : 'text'}
                                         color="primary"
                                         disableElevation
                                         onClick={() => handleAscendance(ascendance.isAscendant)}
@@ -67,8 +59,6 @@ export const OrdersFilters = (props) => {
                         })
                     }
             </Box>
-
-
         </Box>
     )
 }

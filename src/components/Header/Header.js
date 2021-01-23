@@ -8,7 +8,7 @@ import FreeBreakfastOutlinedIcon from '@material-ui/icons/FreeBreakfastOutlined'
 
 export const Header = () => {
     return (
-        <AppBar position="static" className="mainHeader">
+        <AppBar position="fixed" className="mainHeader">
             <Toolbar>
                 <Box width="100%" display="flex" justifyContent="space-between" alignItems="center">
                     <Box display="flex" alignItems="center">

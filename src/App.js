@@ -17,7 +17,7 @@ export const App = () => {
 
 
     return (
-        <>
+        <Box pt={7}>
             <Header />
             <Box component="main" className="mainWrap" pr={drawerStatus ? `${drawerWidth}px` : 0}>
                 <Box py={6} px={2}>
@@ -40,7 +40,7 @@ export const App = () => {
                 message={snackbarStatus.msg}
                 />
             </Box>
-        </>
+        </Box>
 
   );
 }
