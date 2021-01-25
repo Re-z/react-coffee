@@ -8,7 +8,7 @@ import Paper from "@material-ui/core/Paper";
 
 import {formatDateToString} from '../../../utils/dateFormatters'
 import {formatTextToUpperCase} from '../../../utils/textFormatters'
-import React, {useEffect, useState} from "react";
+import {useEffect, useState} from "react";
 import Box from "@material-ui/core/Box";
 import {OrdersFilters} from "../OrdersFilters";
 import {ordersSortingConfig} from "../OrdersFilters/configs/ordersSortingConfig";
@@ -16,16 +16,15 @@ import {ordersSortingConfig} from "../OrdersFilters/configs/ordersSortingConfig"
 const initialSort = ordersSortingConfig[0];
 
 export const OrdersPageTable = (props) => {
-   const orders = props.orders;
    const [sortedOrders, setSortedOrders] = useState([]);
    const [isSortAscendant, setIsSortAscendant] = useState(true);
 
 
    useEffect(() => {
-       const initialySortedArr = initialSort.action(orders);
+       const initialySortedArr = initialSort.action(props.filteredOrders);
        setSortedOrders(initialySortedArr);
        setIsSortAscendant(true);
-   }, [orders])
+   }, [props.filteredOrders])
 
     return (
         <>

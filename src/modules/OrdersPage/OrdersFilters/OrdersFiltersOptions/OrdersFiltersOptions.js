@@ -5,38 +5,77 @@ import FormControl from "@material-ui/core/FormControl";
 import InputLabel from "@material-ui/core/InputLabel";
 import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
+import {useDispatch, useSelector} from "react-redux";
+import {setFilteredOrders} from "../../../../redux/actions/filteredOrdersActions";
+
+const filtersConstants = {
+    ALL_ITEMS: 'ALL_ITEMS'
+}
+
+export const selectStyles = {
+    anchorOrigin: {
+        vertical: 'bottom',
+        horizontal: 'left',
+    },
+    transformOrigin: {
+        vertical: 'top',
+        horizontal: 'left',
+    },
+    getContentAnchorEl: null,
+};
 
 export const OrdersFiltersOptions = () => {
-    const [age, setAge] = useState(0)
-    const handleChange = () => {
-        alert(1)
+    const dispatch = useDispatch();
+
+    const [nameFilter, setNameFilter] = useState(filtersConstants.ALL_ITEMS);
+    const orders = useSelector(state => state.orders.items);
+    const uniqueOrdersNames = Array.from(new Set(orders.map(order => {
+        return order.name; //extract unique values from array and convert back to array
+    })))
+
+    const handleNameFilterChange = (ev) => {
+        const chosenName = ev.target.value;
+        setNameFilter(chosenName);
+
+        if(chosenName === filtersConstants.ALL_ITEMS) {
+            dispatch(setFilteredOrders(orders));
+            return;
+        }
+
+        const filteredArr = orders.filter(order => {
+           return order.name === chosenName
+       })
+        dispatch(setFilteredOrders(filteredArr));
     }
 
     return (
         <Box my={3}>
             <Box display="flex" alignItems="center">
                 <Typography><strong>Filter by:</strong></Typography>
-                {/*filter el*/}
+
+                {/*start filter el*/}
                 <Box ml={1}>
-                    <FormControl  variant="outlined" >
-                        <InputLabel id="demo-simple-select-outlined-label">Age</InputLabel>
+                    <FormControl size="small" variant="outlined" >
+                        <InputLabel id="demo-simple-select-outlined-label">Name</InputLabel>
                         <Select
-                            labelId="demo-simple-select-outlined-label"
-                            id="demo-simple-select-outlined"
-                            value={age}
-                            onChange={handleChange}
-                            label="Age"
+                            value={nameFilter}
+                            onChange={handleNameFilterChange}
+                            label="Name"
+                            MenuProps={selectStyles}
                         >
-                            <MenuItem value="">
-                                <em>None</em>
-                            </MenuItem>
-                            <MenuItem value={10}>Ten</MenuItem>
-                            <MenuItem value={20}>Twenty</MenuItem>
-                            <MenuItem value={30}>Thirty</MenuItem>
+                            <MenuItem value={filtersConstants.ALL_ITEMS}>All</MenuItem>
+                            {
+                                uniqueOrdersNames && uniqueOrdersNames.map((orderName, index) => {
+                                    return (
+                                        <MenuItem key={index} value={orderName}>{orderName}</MenuItem>
+                                    )
+                                })
+                            }
                         </Select>
                     </FormControl>
                 </Box>
                 {/*end filter el*/}
+
             </Box>
         </Box>
     )

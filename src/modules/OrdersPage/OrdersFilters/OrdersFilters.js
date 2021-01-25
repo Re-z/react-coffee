@@ -44,7 +44,7 @@ export const OrdersFilters = (props) => {
                     }
                 </Box>
                 <Box display="flex" alignItems="center">
-                    <Typography>Order:</Typography>
+                    <Typography><strong>Order:</strong></Typography>
                         {
                             ordersAscendance && ordersAscendance.map(ascendance => {
                                 return (
