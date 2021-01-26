@@ -4,11 +4,13 @@ import {BaristaPageCard} from "../BaristaPageCard";
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect} from "react";
 import {fetchProducts} from "../../../redux/actions/productsAction";
+import {CircularProgress} from "@material-ui/core";
 
 
 export const BaristaPage = () => {
     const products = useSelector(state => state.products.items)
     const dispatch = useDispatch();
+    const isLoadingInProgress = useSelector(state => state.baristaPreloader.status)
 
     useEffect(() => {
         dispatch(fetchProducts())
@@ -18,18 +20,24 @@ export const BaristaPage = () => {
 return (
     <>
         <Typography paragraph variant="h4">Barista page</Typography>
-        <Grid container spacing={2}>
-            {
-                products.map(product => {
-                    return (
-                        <BaristaPageCard
-                            key={product.id}
-                            product={product}
-                        />
-                    )
-                })
-            }
-        </Grid>
+        {
+            isLoadingInProgress
+                ? <CircularProgress />
+                : (
+                    <Grid container spacing={2}>
+                        {
+                            products.map(product => {
+                                return (
+                                    <BaristaPageCard
+                                        key={product.id}
+                                        product={product}
+                                    />
+                                )
+                            })
+                        }
+                    </Grid>
+                )
+        }
     </>
 )
 }

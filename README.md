@@ -1,9 +1,8 @@
 #TODO:
 - UseReducer in filters
-- Make loading spinners
-- Sort by size is filterring incorrectly
 - Make pagination for orders
 - Rewrite redux to redux toolkit
+- Add responsive for tablets
 
 ##How to launch:
 - npm install

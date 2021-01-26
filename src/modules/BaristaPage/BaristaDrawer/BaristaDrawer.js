@@ -14,6 +14,7 @@ import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
 import {postOrdersToDB, setLasOrderId} from '../../../redux/actions/ordersAction'
 import {showSnackbar} from '../../../redux/actions/snackbarStatusActions'
+import {mapProductSize} from "../../../utils/productSizeMap";
 
 
 export const BaristaDrawer = () => {
@@ -76,13 +77,13 @@ export const BaristaDrawer = () => {
             display="flex"
             flexDirection="column"
             justifyContent="space-between"
-            px={2}
         >
             <Box pt={10}>
                 <Box
                     display="flex"
                     justifyContent="space-between"
                     alignItems="center"
+                    px={2}
                 >
                     <Typography  variant="h5">Order</Typography>
                     <IconButton
@@ -92,66 +93,68 @@ export const BaristaDrawer = () => {
                         <CloseIcon />
                     </IconButton>
                 </Box>
-                {activeProduct && (
-                    <Card>
-                        <CardMedia
-                            className="coffeeImg, coffeeImg_drawer"
-                            image={activeProduct.img}
-                            title={activeProduct.name}
-                        />
-                        <CardContent>
-                            <Typography
-                                gutterBottom
-                                variant="h5"
-                                component="h2">
-                                {activeProduct.name}
-                            </Typography>
-                            <Box
-                                mt={2}
-                                display="flex"
-                                justifyContent="space-between"
-                                alignItems="center">
-                                <Typography>Choose size:</Typography>
-                                <Box>
-                                    {
-                                        activeProduct.sizes.map (size => {
-                                            return (
-                                                <Button
-                                                    key={size.size}
-                                                    onClick={() => {setChosenSize(size)}}
-                                                    size="small"
-                                                    color="primary"
-                                                    variant={chosenSize === size ? 'contained' : 'text'}
-                                                >
-                                                    {size.size}
-                                                </Button>
-                                            )
-                                        })
-                                    }
+                <Box px={2}>
+                    {activeProduct && (
+                        <Card>
+                            <CardMedia
+                                className="coffeeImg, coffeeImg_drawer"
+                                image={activeProduct.img}
+                                title={activeProduct.name}
+                            />
+                            <CardContent>
+                                <Typography
+                                    gutterBottom
+                                    variant="h5"
+                                    component="h2">
+                                    {activeProduct.name}
+                                </Typography>
+                                <Box
+                                    mt={2}
+                                    display="flex"
+                                    justifyContent="space-between"
+                                    alignItems="center">
+                                    <Typography>Choose size:</Typography>
+                                    <Box>
+                                        {
+                                            activeProduct.sizes.map (size => {
+                                                return (
+                                                    <Button
+                                                        key={size.size}
+                                                        onClick={() => {setChosenSize(size)}}
+                                                        size="small"
+                                                        color="primary"
+                                                        variant={chosenSize === size ? 'contained' : 'text'}
+                                                    >
+                                                        {mapProductSize(size.size) }
+                                                    </Button>
+                                                )
+                                            })
+                                        }
+                                    </Box>
                                 </Box>
-                            </Box>
-                            <Box
-                                mt={2}
-                                display="flex"
-                                justifyContent="space-between"
-                                alignItems="center">
-                                <Typography>Price:</Typography>
-                                <Typography><strong>$ {chosenSize.price}</strong></Typography>
-                            </Box>
+                                <Box
+                                    mt={2}
+                                    display="flex"
+                                    justifyContent="space-between"
+                                    alignItems="center">
+                                    <Typography>Price:</Typography>
+                                    <Typography><strong>$ {chosenSize.price}</strong></Typography>
+                                </Box>
 
-                        </CardContent>
-                        <CardActions>
-                            <Button
-                                disabled={!chosenSize}
-                                variant="outlined"
-                                color="primary"
-                                onClick={() => {handleAddToOrder(chosenSize)}}
-                            >
-                                Add to order
-                            </Button>
-                        </CardActions>
-                    </Card>
-                )}
+                            </CardContent>
+                            <CardActions>
+                                <Button
+                                    disabled={!chosenSize}
+                                    variant="outlined"
+                                    color="primary"
+                                    onClick={() => {handleAddToOrder(chosenSize)}}
+                                >
+                                    Add to order
+                                </Button>
+                            </CardActions>
+                        </Card>
+                    )}
+                </Box>
             </Box>
 
             {
@@ -159,6 +162,7 @@ export const BaristaDrawer = () => {
                     <Box
                         mt={4}
                         className="scrolableDiv"
+                        px={2}
                     >
                         <Box
                             display="flex"
@@ -187,7 +191,7 @@ export const BaristaDrawer = () => {
             {/*buttons*/}
             {
                 orderedProducts.length !== 0 && (
-                    <Box py={2} className="baristaDrawerBtns">
+                    <Box px={2} py={2} className="baristaDrawerBtns">
                         <Divider />
                         <Box
                             mt={2}

@@ -1,5 +1,7 @@
 import {reduxConstants} from "../constants";
 import axios from "axios";
+import {hideBaristaPreloader, showBaristaPreloader} from "./baristaPreloaderAction";
+import {hideOrdersPreloader} from "./ordersPreloaderAction";
 
 const setProducts = (payload) => {
     return {
@@ -11,9 +13,14 @@ const setProducts = (payload) => {
 export const fetchProducts = () => {
     return (dispatch) => {
         const url = 'https://react-coffee-629c8-default-rtdb.firebaseio.com/products.json';
-        axios.get(url)
-            .then( response =>  Object.values(response.data))
-            .then(products => { dispatch(setProducts(products))});
+        dispatch(showBaristaPreloader())
+        setTimeout(() => {
+            axios.get(url)
+                .then( response =>  Object.values(response.data))
+                .then(products => { dispatch(setProducts(products))})
+                .then(dispatch(hideBaristaPreloader()));
+        }, 1000)
+
     };
 }
 
