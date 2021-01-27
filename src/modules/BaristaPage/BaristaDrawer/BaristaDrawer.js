@@ -15,6 +15,8 @@ import CloseIcon from "@material-ui/icons/Close";
 import {postOrdersToDB, setLasOrderId} from '../../../redux/actions/ordersAction'
 import {showSnackbar} from '../../../redux/actions/snackbarStatusActions'
 import {mapProductSize} from "../../../utils/productSizeMap";
+import {drawerStatusSlice} from "../../../redux/reduxToolkit/drawerStatusSlice";
+import {snackbarSlice} from "../../../redux/reduxToolkit/snackbarSlice";
 
 
 export const BaristaDrawer = () => {
@@ -50,11 +52,11 @@ export const BaristaDrawer = () => {
     }
     const resetDrawer = () => {
         setOrderedProducts([]);
-        dispatch(hideDrawer());
+        dispatch(drawerStatusSlice.actions.hideDrawer());
     }
     const handleCancelOrder = () => {
         resetDrawer();
-        dispatch(showSnackbar('Order cancelled'))
+        dispatch(snackbarSlice.actions.showSnackbar('Order cancelled'))
     }
 
     const handleConfirmOrder = () => {
@@ -88,7 +90,9 @@ export const BaristaDrawer = () => {
                     <Typography  variant="h5">Order</Typography>
                     <IconButton
                         color="inherit"
-                        onClick={() => dispatch(hideDrawer())}
+                        onClick={
+                            () => dispatch(drawerStatusSlice.actions.hideDrawer())
+                        }
                     >
                         <CloseIcon />
                     </IconButton>

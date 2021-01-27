@@ -7,8 +7,12 @@ import {applyMiddleware, createStore} from 'redux';
 import {Provider} from 'react-redux';
 import {rootReducer} from './redux/reducers/rootReducer';
 import thunk from 'redux-thunk';
+import {configureStore} from "@reduxjs/toolkit";
 
-const store = createStore(rootReducer, applyMiddleware(thunk));
+// const store = createStore(rootReducer, applyMiddleware(thunk));
+const store = configureStore({
+    reducer: rootReducer
+})
 window.store = store;
 
 

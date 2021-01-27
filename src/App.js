@@ -7,12 +7,13 @@ import Snackbar from '@material-ui/core/Snackbar';
 import {hideSnackbar} from "./redux/actions/snackbarStatusActions";
 import  {Route, Switch} from 'react-router-dom'
 import {OrdersPage} from "./modules/OrdersPage/OrdersPage";
+import {snackbarSlice} from "./redux/reduxToolkit/snackbarSlice";
 
 const drawerWidth = 450;
 
 export const App = () => {
     const dispatch = useDispatch();
-    const drawerStatus = useSelector((state) => {return state.drawerStatus.isOpen})
+    const drawerStatus = useSelector((state) => {return state.drawerStatus})
     const snackbarStatus = useSelector(state => state.snackbarStatus);
 
 
@@ -35,7 +36,7 @@ export const App = () => {
                     horizontal: 'left',
                 }}
                 autoHideDuration={3000}
-                onClose={() => dispatch(hideSnackbar())}
+                onClose={() => dispatch(snackbarSlice.actions.hideSnackbar())}
                 open={snackbarStatus.isOpen}
                 message={snackbarStatus.msg}
                 />

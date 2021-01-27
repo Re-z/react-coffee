@@ -7,15 +7,15 @@ import Grid from "@material-ui/core/Grid";
 import {useDispatch} from "react-redux";
 import {setBaristaActiveProduct} from "../../../redux/actions/baristaActiveProductAction";
 import {showDrawer} from "../../../redux/actions/drawerStatusAction";
+import {drawerStatusSlice} from "../../../redux/reduxToolkit/drawerStatusSlice";
 
 
 export const BaristaPageCard = (props) => {
     const dispatch = useDispatch();
     const handleCardClick = () => {
         dispatch(setBaristaActiveProduct(props.product));
-        dispatch(showDrawer())
+        dispatch(drawerStatusSlice.actions.showDrawer());
     }
-
 
     return (
         <Grid item xs={2}>
