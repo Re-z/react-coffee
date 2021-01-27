@@ -3,6 +3,7 @@ import {reduxConstants} from "../constants";
 import axios from "axios";
 import {hideOrdersPreloader, showOrdersPreloader} from "./ordersPreloaderAction";
 import {snackbarSlice} from "../reduxToolkit/snackbarSlice";
+import {ordersPreloaderSlice} from "../reduxToolkit/ordersPreloaderSlice";
 
 const url = 'https://react-coffee-629c8-default-rtdb.firebaseio.com/orders.json'
 
@@ -35,14 +36,14 @@ export const postOrdersToDB = (ordersArr) => {
 
 export const fetchOrders = () => {
     return (dispatch) => {
-        dispatch(showOrdersPreloader())
+        dispatch(ordersPreloaderSlice.actions.showOrdersPreloader())
         //emulate data loading
         setTimeout(() => {
                 axios.get(url)
                     .then(orders =>
                         dispatch(setOrders((convertDBObjectToArray(orders.data))))
                     )
-                    .then(dispatch(hideOrdersPreloader()))
+                    .then(dispatch(ordersPreloaderSlice.actions.hideOrdersPreloader()))
             }, 1000)
         }
 }

@@ -5,13 +5,14 @@ import {useEffect} from "react";
 import {fetchOrders} from "../../../redux/actions/ordersAction";
 import {setFilteredOrders} from "../../../redux/actions/filteredOrdersActions";
 import {CircularProgress} from "@material-ui/core";
+import {filteredOrdersSlice} from "../../../redux/reduxToolkit/filteredOrdersSlice";
 
 export const OrdersPage = () => {
     const dispatch = useDispatch();
     const orders = useSelector(state => state.orders.items);
     const filteredOrders = useSelector(state => state.filteredOrders.items);
     const lastOrderId = useSelector(state => state.orders.lastOrderId)
-    const isLoadingInProgress = useSelector(state => state.ordersPreloader.status)
+    const isLoadingInProgress = useSelector(state => state.ordersPreloader)
 
 
     useEffect(() => {
@@ -21,7 +22,7 @@ export const OrdersPage = () => {
     //two use effects?
 
     useEffect(() => {
-        dispatch(setFilteredOrders(orders))
+        dispatch(filteredOrdersSlice.actions.setFilteredOrders(orders))
     }, [dispatch, orders])
 
     return (

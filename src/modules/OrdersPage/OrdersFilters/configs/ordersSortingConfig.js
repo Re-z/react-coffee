@@ -37,7 +37,10 @@ const sortByOrderTime = (orders) => {
         }
         return 0;
     }
-    return [...orders.sort(compare)]
+    const a = [...orders.sort()];
+    console.log(a, '1')
+    // console.log(a.sort(compare), 'compared')
+    return a
 }
 const sortByPrice = (orders) => {
     const compare = (a, b) => {

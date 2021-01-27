@@ -8,12 +8,13 @@ import {useDispatch} from "react-redux";
 import {setBaristaActiveProduct} from "../../../redux/actions/baristaActiveProductAction";
 import {showDrawer} from "../../../redux/actions/drawerStatusAction";
 import {drawerStatusSlice} from "../../../redux/reduxToolkit/drawerStatusSlice";
+import {baristaActiveProductSlice} from "../../../redux/reduxToolkit/baristaActiveProductSlice";
 
 
 export const BaristaPageCard = (props) => {
     const dispatch = useDispatch();
     const handleCardClick = () => {
-        dispatch(setBaristaActiveProduct(props.product));
+        dispatch(baristaActiveProductSlice.actions.setBaristaActiveProduct(props.product));
         dispatch(drawerStatusSlice.actions.showDrawer());
     }
 

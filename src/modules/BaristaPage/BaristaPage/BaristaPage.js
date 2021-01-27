@@ -10,7 +10,7 @@ import {CircularProgress} from "@material-ui/core";
 export const BaristaPage = () => {
     const products = useSelector(state => state.products.items)
     const dispatch = useDispatch();
-    const isLoadingInProgress = useSelector(state => state.baristaPreloader.status)
+    const isLoadingInProgress = useSelector(state => state.baristaPreloader)
 
     useEffect(() => {
         dispatch(fetchProducts())

@@ -7,6 +7,7 @@ import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
 import {useDispatch, useSelector} from "react-redux";
 import {setFilteredOrders} from "../../../../redux/actions/filteredOrdersActions";
+import {filteredOrdersSlice} from "../../../../redux/reduxToolkit/filteredOrdersSlice";
 
 const filtersConstants = {
     ALL_ITEMS: 'ALL_ITEMS'
@@ -38,14 +39,14 @@ export const OrdersFiltersOptions = () => {
         setNameFilter(chosenName);
 
         if(chosenName === filtersConstants.ALL_ITEMS) {
-            dispatch(setFilteredOrders(orders));
+            dispatch(filteredOrdersSlice.actions.setFilteredOrders(orders));
             return;
         }
 
         const filteredArr = orders.filter(order => {
            return order.name === chosenName
        })
-        dispatch(setFilteredOrders(filteredArr));
+        dispatch(filteredOrdersSlice.actions.setFilteredOrders(filteredArr));
     }
 
     return (
