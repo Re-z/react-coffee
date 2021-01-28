@@ -5,15 +5,13 @@ import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import Button from "@material-ui/core/Button";
 import CardActions from "@material-ui/core/CardActions";
-import {hideDrawer} from "../../../redux/actions/drawerStatusAction";
 import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {BaristaDrawerOrderedProduct} from '../BaristaDrawerOrderedItem'
 import Divider from '@material-ui/core/Divider';
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
-import {postOrdersToDB, setLasOrderId} from '../../../redux/actions/ordersAction'
-import {showSnackbar} from '../../../redux/actions/snackbarStatusActions'
+import {ordersSlice, postOrdersToDBThunk} from '../../../redux/reduxToolkit/ordersSlice'
 import {mapProductSize} from "../../../utils/productSizeMap";
 import {drawerStatusSlice} from "../../../redux/reduxToolkit/drawerStatusSlice";
 import {snackbarSlice} from "../../../redux/reduxToolkit/snackbarSlice";
@@ -67,9 +65,8 @@ export const BaristaDrawer = () => {
                 orderTime: currentTime
             }
         })
-        dispatch(postOrdersToDB(orders))
-            .then(() => dispatch(setLasOrderId(currentTime)))
-
+        dispatch(postOrdersToDBThunk(orders))
+            .then(dispatch(ordersSlice.actions.setLastOrderId(currentTime)))
         resetDrawer()
     }
 

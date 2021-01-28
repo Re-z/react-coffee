@@ -2,8 +2,7 @@ import Typography from "@material-ui/core/Typography";
 import {useDispatch, useSelector} from "react-redux";
 import {OrdersPageTable} from "../OrdersPageTable";
 import {useEffect} from "react";
-import {fetchOrders} from "../../../redux/actions/ordersAction";
-import {setFilteredOrders} from "../../../redux/actions/filteredOrdersActions";
+import {fetchOrdersThunk} from "../../../redux/reduxToolkit/ordersSlice";
 import {CircularProgress} from "@material-ui/core";
 import {filteredOrdersSlice} from "../../../redux/reduxToolkit/filteredOrdersSlice";
 
@@ -16,7 +15,7 @@ export const OrdersPage = () => {
 
 
     useEffect(() => {
-        dispatch(fetchOrders());
+        dispatch(fetchOrdersThunk());
     }, [dispatch, lastOrderId])
 
     //two use effects?

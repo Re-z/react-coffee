@@ -4,7 +4,6 @@ import {AppDrawer} from "./components/Drawer";
 import {useDispatch, useSelector} from "react-redux";
 import {BaristaPage} from "./modules/BaristaPage/BaristaPage";
 import Snackbar from '@material-ui/core/Snackbar';
-import {hideSnackbar} from "./redux/actions/snackbarStatusActions";
 import  {Route, Switch} from 'react-router-dom'
 import {OrdersPage} from "./modules/OrdersPage/OrdersPage";
 import {snackbarSlice} from "./redux/reduxToolkit/snackbarSlice";

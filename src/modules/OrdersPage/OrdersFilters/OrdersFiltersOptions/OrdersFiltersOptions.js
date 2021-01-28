@@ -6,7 +6,6 @@ import InputLabel from "@material-ui/core/InputLabel";
 import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
 import {useDispatch, useSelector} from "react-redux";
-import {setFilteredOrders} from "../../../../redux/actions/filteredOrdersActions";
 import {filteredOrdersSlice} from "../../../../redux/reduxToolkit/filteredOrdersSlice";
 
 const filtersConstants = {

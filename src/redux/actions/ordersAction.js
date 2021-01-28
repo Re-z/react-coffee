@@ -1,11 +1,10 @@
-import {showSnackbar} from "./snackbarStatusActions";
 import {reduxConstants} from "../constants";
 import axios from "axios";
-import {hideOrdersPreloader, showOrdersPreloader} from "./ordersPreloaderAction";
 import {snackbarSlice} from "../reduxToolkit/snackbarSlice";
 import {ordersPreloaderSlice} from "../reduxToolkit/ordersPreloaderSlice";
 
 const url = 'https://react-coffee-629c8-default-rtdb.firebaseio.com/orders.json'
+
 
 const setOrders = (orders) => {
     return {
