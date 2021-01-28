@@ -11,7 +11,7 @@ const sortBySize = (orders) => {
         }
         return 0;
     }
-    return ([...orders.sort(compare)])
+    return [...orders].sort(compare)
 }
 
 const sortByName = (orders) => {
@@ -24,7 +24,7 @@ const sortByName = (orders) => {
         }
         return 0;
     }
-    return ([...orders.sort(compare)])
+    return [...orders].sort(compare)
 }
 
 const sortByOrderTime = (orders) => {
@@ -37,10 +37,7 @@ const sortByOrderTime = (orders) => {
         }
         return 0;
     }
-    const a = [...orders.sort()];
-    console.log(a, '1')
-    // console.log(a.sort(compare), 'compared')
-    return a
+    return [...orders].sort(compare)
 }
 const sortByPrice = (orders) => {
     const compare = (a, b) => {

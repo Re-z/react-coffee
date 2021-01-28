@@ -3,8 +3,10 @@ import Grid from "@material-ui/core/Grid";
 import {BaristaPageCard} from "../BaristaPageCard";
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect} from "react";
-import {fetchProducts} from "../../../redux/actions/productsAction";
+// import {fetchProducts} from "../../../redux/actions/productsAction";
+import {fetchProducts} from "../../../redux/reduxToolkit/productsSlice";
 import {CircularProgress} from "@material-ui/core";
+import {productsSlice} from "../../../redux/reduxToolkit/productsSlice";
 
 
 export const BaristaPage = () => {
@@ -13,6 +15,7 @@ export const BaristaPage = () => {
     const isLoadingInProgress = useSelector(state => state.baristaPreloader)
 
     useEffect(() => {
+        // dispatch(fetchProducts())
         dispatch(fetchProducts())
     }, [dispatch])
 
