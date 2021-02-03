@@ -2,6 +2,7 @@ import Box from "@material-ui/core/Box";
 import React from "react";
 import Typography from "@material-ui/core/Typography";
 import Divider from "@material-ui/core/Divider";
+import {mapProductSize} from "../../../utils/productSizeMap";
 
 export const BaristaDrawerOrderedProduct = (props) => {
     return (
@@ -16,7 +17,7 @@ export const BaristaDrawerOrderedProduct = (props) => {
                    className="textUppercase"
                    color="textSecondary"
                >
-                   {props.product.chosenSize.size}
+                   {mapProductSize(props.product.chosenSize.size)}
                </Typography>
            </Box>
            <Box
