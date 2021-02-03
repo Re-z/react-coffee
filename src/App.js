@@ -6,7 +6,7 @@ import {BaristaPage} from "./modules/BaristaPage/BaristaPage";
 import Snackbar from '@material-ui/core/Snackbar';
 import  {Route, Switch} from 'react-router-dom'
 import {OrdersPage} from "./modules/OrdersPage/OrdersPage";
-import {snackbarSlice} from "./redux/reduxToolkit/snackbarSlice";
+import {snackbarSlice} from "./redux/slices/snackbarSlice";
 
 const drawerWidth = 450;
 

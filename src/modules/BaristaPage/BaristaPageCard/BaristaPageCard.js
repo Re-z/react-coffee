@@ -5,8 +5,8 @@ import Typography from "@material-ui/core/Typography";
 import Card from "@material-ui/core/Card";
 import Grid from "@material-ui/core/Grid";
 import {useDispatch} from "react-redux";
-import {drawerStatusSlice} from "../../../redux/reduxToolkit/drawerStatusSlice";
-import {baristaActiveProductSlice} from "../../../redux/reduxToolkit/baristaActiveProductSlice";
+import {drawerStatusSlice} from "../../../redux/slices/drawerStatusSlice";
+import {baristaActiveProductSlice} from "../../../redux/slices/baristaActiveProductSlice";
 
 
 export const BaristaPageCard = (props) => {

@@ -2,9 +2,9 @@ import Typography from "@material-ui/core/Typography";
 import {useDispatch, useSelector} from "react-redux";
 import {OrdersPageTable} from "../OrdersPageTable";
 import {useEffect} from "react";
-import {fetchOrdersThunk} from "../../../redux/reduxToolkit/ordersSlice";
+import {fetchOrdersThunk} from "../../../redux/slices/ordersSlice";
 import {CircularProgress} from "@material-ui/core";
-import {filteredOrdersSlice} from "../../../redux/reduxToolkit/filteredOrdersSlice";
+import {filteredOrdersSlice} from "../../../redux/slices/filteredOrdersSlice";
 
 export const OrdersPage = () => {
     const dispatch = useDispatch();

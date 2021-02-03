@@ -1,5 +1,3 @@
-import {reduxConstants} from '../../../../redux/constants';
-
 
 const sortBySize = (orders) => {
     const compare = (a, b) => {
@@ -55,22 +53,18 @@ const sortByPrice = (orders) => {
 
 export const ordersSortingConfig = [
     {
-        name: reduxConstants.SORT_ORDERS_BY_TIME,
         btnLabel: 'Date',
         action: sortByOrderTime
     },
     {
-        name: reduxConstants.SORT_ORDERS_BY_NAME,
         btnLabel: 'Name',
         action: sortByName
     },
     {
-        name: reduxConstants.SORT_ORDERS_BY_SIZE,
         btnLabel: 'Size',
         action: sortBySize
     },
     {
-        name: reduxConstants.SORT_ORDERS_BY_PRICE,
         btnLabel: 'Price',
         action: sortByPrice
     }

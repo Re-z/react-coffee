@@ -3,7 +3,7 @@ import Grid from "@material-ui/core/Grid";
 import {BaristaPageCard} from "../BaristaPageCard";
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect} from "react";
-import {fetchProducts} from "../../../redux/reduxToolkit/productsSlice";
+import {fetchProducts} from "../../../redux/slices/productsSlice";
 import {CircularProgress} from "@material-ui/core";
 
 

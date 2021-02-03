@@ -32,10 +32,7 @@ export const Header = () => {
                                 </Typography>
                             </NavLink>
                         </Box>
-
                     </Box>
-
-                    <Button color="inherit">Logout</Button>
                 </Box>
             </Toolbar>
         </AppBar>

@@ -4,7 +4,7 @@ import {App} from './App';
 import { BrowserRouter as Router } from 'react-router-dom';
 import './assets/styles/global.scss'
 import {Provider} from 'react-redux';
-import {rootReducer} from './redux/rootReducer';
+import {rootReducer} from './redux/config/rootReducer';
 import {configureStore} from "@reduxjs/toolkit";
 
 const store = configureStore({

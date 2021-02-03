@@ -13,19 +13,31 @@ import {OrdersFilters} from "../OrdersFilters";
 import {ordersSortingConfig} from "../OrdersFilters/configs/ordersSortingConfig";
 import {mapProductSize} from "../../../utils/productSizeMap";
 import Typography from "@material-ui/core/Typography";
+import {TablePagination} from "@material-ui/core";
 
 const initialSort = ordersSortingConfig[0];
 
 export const OrdersPageTable = (props) => {
    const [sortedOrders, setSortedOrders] = useState([]);
    const [isSortAscendant, setIsSortAscendant] = useState(true);
-
+    const [tablePage, setTablePage] = useState(0);
+    const [rowsPerPage, setRowsPerPage] = useState(10);
 
    useEffect(() => {
        const initialySortedArr = initialSort.action(props.filteredOrders);
+       //useReducer || useSetState (https://github.com/streamich/react-use/blob/master/docs/useSetState.md)
        setSortedOrders(initialySortedArr);
        setIsSortAscendant(true);
    }, [props.filteredOrders])
+
+
+    const handleChangePage = (event, newPage) => {
+        setTablePage(newPage);
+    };
+    const handleChangeRowsPerPage = (event) => {
+        setRowsPerPage(parseInt(event.target.value, 10));
+        setTablePage(0);
+    };
 
     return (
         <>
@@ -53,7 +65,9 @@ export const OrdersPageTable = (props) => {
                                 </TableHead>
                                 <TableBody>
                                     {
-                                        sortedOrders.map((order,index) => {
+                                        sortedOrders
+                                            .slice(tablePage * rowsPerPage, tablePage * rowsPerPage + rowsPerPage)
+                                            .map((order,index) => {
                                             return (
                                                 <TableRow
                                                     key={index}
@@ -70,6 +84,15 @@ export const OrdersPageTable = (props) => {
                                     }
                                 </TableBody>
                             </Table>
+                            <TablePagination
+                                component="div"
+                                count={sortedOrders.length}
+                                rowsPerPage={rowsPerPage}
+                                rowsPerPageOptions={[5, 10, 20]}
+                                page={tablePage}
+                                onChangePage={handleChangePage}
+                                onChangeRowsPerPage={handleChangeRowsPerPage}
+                            />
                         </TableContainer>
                 )
                 : <Typography>No items</Typography>

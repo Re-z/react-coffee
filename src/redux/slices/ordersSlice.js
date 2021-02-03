@@ -7,8 +7,14 @@ const url = 'https://react-coffee-629c8-default-rtdb.firebaseio.com/orders.json'
 
 const initialState = {
     items: [],
-    lastOrderId: null
+    lastOrderId: null,
+    // filters: {
+    //     size: null,
+    //     name: null
+    // }
 }
+
+// dispatch(setOrdersFilter({size: 'M'}))
 
 export const ordersSlice = createSlice({
     name: 'orders',
@@ -19,16 +25,19 @@ export const ordersSlice = createSlice({
         },
         setLastOrderId(state, action) {
             state.lastOrdersId = action.payload
-        }
+        },
+        // setOrdersFilters() {}
     }
 })
+
+
+
 
 const convertDBObjectToArray = (DBObject) => {
     return Object.values(DBObject).flat(Infinity)
 }
 
 const setOrders = ordersSlice.actions.setOrders;
-
 
 export const postOrdersToDBThunk = (ordersArr) => {
     return (dispatch) => {

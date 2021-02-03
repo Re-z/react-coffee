@@ -18,7 +18,10 @@ export const OrdersFilters = (props) => {
 
     return (
         <>
-            <Box display="flex" alignItems="center" justifyContent="space-between">
+            <Box display="flex"
+                 alignItems="center"
+                 justifyContent="space-between"
+            >
                 <Box display="flex" alignItems="center">
                     <Typography><strong>Sort by:</strong></Typography>
                     {

@@ -11,10 +11,10 @@ import {BaristaDrawerOrderedProduct} from '../BaristaDrawerOrderedItem'
 import Divider from '@material-ui/core/Divider';
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
-import {ordersSlice, postOrdersToDBThunk} from '../../../redux/reduxToolkit/ordersSlice'
+import {ordersSlice, postOrdersToDBThunk} from '../../../redux/slices/ordersSlice'
 import {mapProductSize} from "../../../utils/productSizeMap";
-import {drawerStatusSlice} from "../../../redux/reduxToolkit/drawerStatusSlice";
-import {snackbarSlice} from "../../../redux/reduxToolkit/snackbarSlice";
+import {drawerStatusSlice} from "../../../redux/slices/drawerStatusSlice";
+import {snackbarSlice} from "../../../redux/slices/snackbarSlice";
 
 
 export const BaristaDrawer = () => {
