@@ -1,7 +1,9 @@
 const {createSlice} = require("@reduxjs/toolkit");
 
+export const drawerStatusSlicePath = 'drawerStatus'
+
 export const drawerStatusSlice = createSlice({
-    name: 'DrawerStatus',
+    name: drawerStatusSlicePath,
     initialState: false,
     reducers: {
         showDrawer(state) {

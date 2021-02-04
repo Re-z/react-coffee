@@ -14,10 +14,10 @@ const initialState = {
     // }
 }
 
-// dispatch(setOrdersFilter({size: 'M'}))
+export const ordersSlicePath = 'orders';
 
 export const ordersSlice = createSlice({
-    name: 'orders',
+    name: ordersSlicePath,
     initialState,
     reducers: {
         setOrders(state, action) {
@@ -29,8 +29,6 @@ export const ordersSlice = createSlice({
         // setOrdersFilters() {}
     }
 })
-
-
 
 
 const convertDBObjectToArray = (DBObject) => {

@@ -5,8 +5,10 @@ const initialState = {
     msg: ''
 }
 
+export const snackbarSlicePath = 'snackbarSlice'
+
 export const snackbarSlice = createSlice({
-    name: 'snackbarSlice',
+    name: snackbarSlicePath,
     initialState: initialState,
     reducers: {
         showSnackbar(state,action) {

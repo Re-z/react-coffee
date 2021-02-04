@@ -2,8 +2,10 @@ import {createSlice} from "@reduxjs/toolkit";
 
 const initialState = false;
 
+export const ordersPreloaderSlicePath =  'ordersPreloader';
+
 export const ordersPreloaderSlice = createSlice({
-    name: 'ordersPreloader',
+    name: ordersPreloaderSlicePath,
     initialState,
     reducers: {
         showOrdersPreloader(state) {

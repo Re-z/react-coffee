@@ -5,9 +5,10 @@ import axios from "axios";
 const initialState = {
     items: []
 }
+export const productsSlicePath = 'products';
 
 export const productsSlice = createSlice({
-    name: 'products',
+    name: productsSlicePath,
     initialState,
     reducers: {
         setProducts(state, action) {

@@ -13,7 +13,7 @@ const drawerWidth = 450;
 export const App = () => {
     const dispatch = useDispatch();
     const drawerStatus = useSelector((state) => {return state.drawerStatus})
-    const snackbarStatus = useSelector(state => state.snackbarStatus);
+    const snackbarStatus = useSelector(state => state.snackbarSlice);
 
 
     return (

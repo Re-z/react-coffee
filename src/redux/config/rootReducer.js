@@ -1,22 +1,22 @@
 import {combineReducers} from 'redux';
-import {drawerStatusSlice} from "../slices/drawerStatusSlice";
-import {snackbarSlice} from "../slices/snackbarSlice";
-import {baristaActiveProductSlice} from "../slices/baristaActiveProductSlice";
-import {baristaPreloaderSlice} from "../slices/baristaPreloaderSlice";
-import {filteredOrdersSlice} from "../slices/filteredOrdersSlice";
-import {ordersPreloaderSlice} from "../slices/ordersPreloaderSlice";
-import {productsSlice} from "../slices/productsSlice";
-import {ordersSlice} from "../slices/ordersSlice";
+import {drawerStatusSlice, drawerStatusSlicePath} from "../slices/drawerStatusSlice";
+import {snackbarSlice, snackbarSlicePath} from "../slices/snackbarSlice";
+import {baristaActiveProductSlice, baristaActiveProductSlicePath} from "../slices/baristaActiveProductSlice";
+import {baristaPreloaderSlice, baristaPreloaderSlicePath} from "../slices/baristaPreloaderSlice";
+import {filteredOrdersSlice, filteredOrdersSlicePath} from "../slices/filteredOrdersSlice";
+import {ordersPreloaderSlice, ordersPreloaderSlicePath} from "../slices/ordersPreloaderSlice";
+import {productsSlice, productsSlicePath} from "../slices/productsSlice";
+import {ordersSlice, ordersSlicePath} from "../slices/ordersSlice";
 
 export const rootReducer = combineReducers(
     {
-        drawerStatus: drawerStatusSlice.reducer,
-        baristaActiveProduct: baristaActiveProductSlice.reducer,
-        baristaPreloader: baristaPreloaderSlice.reducer,
-        orders: ordersSlice.reducer,
-        filteredOrders: filteredOrdersSlice.reducer,
-        ordersPreloader: ordersPreloaderSlice.reducer,
-        snackbarStatus: snackbarSlice.reducer,
-        products: productsSlice.reducer
+        [drawerStatusSlicePath]: drawerStatusSlice.reducer,
+        [baristaActiveProductSlicePath]: baristaActiveProductSlice.reducer,
+        [baristaPreloaderSlicePath]: baristaPreloaderSlice.reducer,
+        [ordersSlicePath]: ordersSlice.reducer,
+        [filteredOrdersSlicePath]: filteredOrdersSlice.reducer,
+        [ordersPreloaderSlicePath]: ordersPreloaderSlice.reducer,
+        [snackbarSlicePath]: snackbarSlice.reducer,
+        [productsSlicePath]: productsSlice.reducer
     }
 )

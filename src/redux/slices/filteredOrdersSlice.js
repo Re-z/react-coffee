@@ -4,8 +4,10 @@ const initialState = {
     items: []
 };
 
+export const filteredOrdersSlicePath = 'filteredOrders';
+
 export const filteredOrdersSlice = createSlice({
-    name: 'filteredOrders',
+    name: filteredOrdersSlicePath,
     initialState,
     reducers: {
         setFilteredOrders(state, action) {

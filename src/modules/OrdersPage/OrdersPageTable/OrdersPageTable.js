@@ -85,6 +85,7 @@ export const OrdersPageTable = (props) => {
                                 </TableBody>
                             </Table>
                             <TablePagination
+                                labelRowsPerPage='Orders per page'
                                 component="div"
                                 count={sortedOrders.length}
                                 rowsPerPage={rowsPerPage}

@@ -2,6 +2,8 @@ import {createSlice} from "@reduxjs/toolkit";
 
 const initialState = false
 
+export const baristaPreloaderSlicePath = 'baristaPreloader'
+
 export const baristaPreloaderSlice = createSlice({
     name: 'baristaPreloader',
     initialState,
