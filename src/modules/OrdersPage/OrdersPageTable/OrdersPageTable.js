@@ -16,12 +16,13 @@ import Typography from "@material-ui/core/Typography";
 import {TablePagination} from "@material-ui/core";
 
 const initialSort = ordersSortingConfig[0];
+const rowsPerPageOptions = [5,10,15,20]
 
 export const OrdersPageTable = (props) => {
    const [sortedOrders, setSortedOrders] = useState([]);
    const [isSortAscendant, setIsSortAscendant] = useState(true);
     const [tablePage, setTablePage] = useState(0);
-    const [rowsPerPage, setRowsPerPage] = useState(10);
+    const [rowsPerPage, setRowsPerPage] = useState(rowsPerPageOptions[1]);
 
    useEffect(() => {
        const initialySortedArr = initialSort.action(props.filteredOrders);
@@ -89,7 +90,7 @@ export const OrdersPageTable = (props) => {
                                 component="div"
                                 count={sortedOrders.length}
                                 rowsPerPage={rowsPerPage}
-                                rowsPerPageOptions={[5, 10, 20]}
+                                rowsPerPageOptions={rowsPerPageOptions}
                                 page={tablePage}
                                 onChangePage={handleChangePage}
                                 onChangeRowsPerPage={handleChangeRowsPerPage}

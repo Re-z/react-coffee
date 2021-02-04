@@ -11,14 +11,11 @@ export const OrdersPage = () => {
     const orders = useSelector(state => state.orders.items);
     const filteredOrders = useSelector(state => state.filteredOrders.items);
     const lastOrderId = useSelector(state => state.orders.lastOrderId)
-    const isLoadingInProgress = useSelector(state => state.ordersPreloader)
-
+    const isLoadingInProgress = useSelector(state => state.orders.isLoading)
 
     useEffect(() => {
         dispatch(fetchOrdersThunk());
-    }, [dispatch, lastOrderId])
-
-    //two use effects?
+    }, [dispatch, lastOrderId]);
 
     useEffect(() => {
         dispatch(filteredOrdersSlice.actions.setFilteredOrders(orders))

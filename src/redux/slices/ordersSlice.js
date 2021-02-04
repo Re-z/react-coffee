@@ -1,5 +1,4 @@
 import {createSlice} from "@reduxjs/toolkit";
-import {ordersPreloaderSlice} from "./ordersPreloaderSlice";
 import axios from "axios";
 import {snackbarSlice} from "./snackbarSlice";
 
@@ -7,6 +6,7 @@ const url = 'https://react-coffee-629c8-default-rtdb.firebaseio.com/orders.json'
 
 const initialState = {
     items: [],
+    isLoading: false,
     lastOrderId: null,
     // filters: {
     //     size: null,
@@ -26,7 +26,9 @@ export const ordersSlice = createSlice({
         setLastOrderId(state, action) {
             state.lastOrdersId = action.payload
         },
-        // setOrdersFilters() {}
+        setIsLoading(state, action) {
+            state.isLoading = action.payload;
+        }
     }
 })
 
@@ -36,6 +38,7 @@ const convertDBObjectToArray = (DBObject) => {
 }
 
 const setOrders = ordersSlice.actions.setOrders;
+const setIsLoading = ordersSlice.actions.setIsLoading;
 
 export const postOrdersToDBThunk = (ordersArr) => {
     return (dispatch) => {
@@ -48,14 +51,14 @@ export const postOrdersToDBThunk = (ordersArr) => {
 
 export const fetchOrdersThunk = () => {
     return (dispatch) => {
-        dispatch(ordersPreloaderSlice.actions.showOrdersPreloader())
+        dispatch(setIsLoading(true))
         //emulate data loading
         setTimeout(() => {
             axios.get(url)
                 .then(orders =>
                     dispatch(setOrders((convertDBObjectToArray(orders.data))))
                 )
-                .then(dispatch(ordersPreloaderSlice.actions.hideOrdersPreloader()))
+                .then(dispatch(setIsLoading(false)))
         }, 1000)
     }
 }
