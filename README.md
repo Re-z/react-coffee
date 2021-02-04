@@ -15,6 +15,7 @@ Another page, Orders page, was created for owners. It displays an information ab
 - Redux/Redux Toolkit
 - React Material UI Framework
 - SCSS
+- Firebase as json provider
 
 ### How to launch:
 - npm install
