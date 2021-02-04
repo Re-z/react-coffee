@@ -5,7 +5,7 @@ import {BaristaDrawer} from "../../modules/BaristaPage/BaristaDrawer";
 
 export const AppDrawer = (props) => {
     // const drawerStatus = useSelector((state) => {return state.drawerStatus.isOpen})
-    const drawerStatus = useSelector((state) => {return state.drawerStatus})
+    const drawerStatus = useSelector((state) => {return state.drawerStatus.isOpen})
 
     return (
             <Drawer

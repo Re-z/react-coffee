@@ -12,16 +12,12 @@ export const snackbarSlice = createSlice({
     initialState: initialState,
     reducers: {
         showSnackbar(state,action) {
-            return {
-                isOpen: true,
-                msg: action.payload
-            }
+            state.isOpen = true;
+            state.msg = action.payload;
         },
         hideSnackbar(state, action) {
-            return {
-                isOpen: false,
-                msg: action.payload
-            }
+            state.isOpen = false;
+            state.msg = action.payload;
         }
     }
 })

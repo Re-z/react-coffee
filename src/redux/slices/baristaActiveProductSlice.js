@@ -10,9 +10,7 @@ export const baristaActiveProductSlice = createSlice({
     initialState,
     reducers: {
         setBaristaActiveProduct(state, action) {
-            return {
-                product: action.payload
-            }
+            state.product = action.payload
         }
     }
 })

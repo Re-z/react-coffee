@@ -1,16 +1,20 @@
 const {createSlice} = require("@reduxjs/toolkit");
 
+const initialState = {
+    isOpen: false
+}
+
 export const drawerStatusSlicePath = 'drawerStatus'
 
 export const drawerStatusSlice = createSlice({
     name: drawerStatusSlicePath,
-    initialState: false,
+    initialState,
     reducers: {
         showDrawer(state) {
-            return state = true
+            state.isOpen = true;
         },
         hideDrawer(state) {
-            return state = false
+            state.isOpen = false;
         }
     }
 })

@@ -11,9 +11,7 @@ export const filteredOrdersSlice = createSlice({
     initialState,
     reducers: {
         setFilteredOrders(state, action) {
-            return {
-                items: action.payload
-            }
+            state.items = action.payload
         }
     }
 
