@@ -39,7 +39,7 @@ export const OrdersPageTable = (props) => {
         setTablePage(newPage);
     };
     const handleChangeRowsPerPage = (event) => {
-        setRowsPerPage(parseInt(event.target.value, 10));
+        setRowsPerPage(Number(event.target.value));
         setTablePage(0);
     };
 
