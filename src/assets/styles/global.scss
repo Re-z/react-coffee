@@ -12,36 +12,19 @@ a {
   }
 }
 
-.mainHeader {
-  z-index: 10000 !important;
-}
 .mainWrap {
   overflow-x: hidden;
   background: #fefefe;
 }
-.coffeeImg {
-  height: 150px;
-  background-position: center center !important;
-  &_drawer {
-    height: 200px;
-  }
-}
+
 .textUppercase {
   text-transform: uppercase;
 }
+
 .width50 {
   width: 50% !important;
 }
-.scrolableDiv {
-  flex: 1;
-  overflow: auto;
-}
+
 .fullHeight {
   height: 100%;
-}
-.navLinkActive {
-  text-decoration: underline;
-}
-.tableRowOdd {
-  background: #fafafa;
 }

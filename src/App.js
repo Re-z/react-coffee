@@ -9,7 +9,6 @@ import {OrdersPage} from "./modules/OrdersPage/OrdersPage";
 import {snackbarSlice} from "./redux/slices/snackbarSlice";
 import {isTablet} from "./utils/customHooks/isTabletHook";
 
-
 export const App = () => {
     const dispatch = useDispatch();
     const drawerStatus = useSelector((state) => {return state.drawerStatus.isOpen})

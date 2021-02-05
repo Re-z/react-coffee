@@ -7,7 +7,7 @@ import Grid from "@material-ui/core/Grid";
 import {useDispatch, useSelector} from "react-redux";
 import {drawerStatusSlice} from "../../../redux/slices/drawerStatusSlice";
 import {baristaActiveProductSlice} from "../../../redux/slices/baristaActiveProductSlice";
-
+import styles from './BaristaPageCard.module.scss'
 
 export const BaristaPageCard = (props) => {
     const dispatch = useDispatch();
@@ -27,7 +27,7 @@ export const BaristaPageCard = (props) => {
             <Card onClick={() => handleCardClick()}>
                 <CardActionArea>
                     <CardMedia
-                        className="coffeeImg"
+                        className={styles.coffeeImg}
                         image={props.product.img}
                         title={props.product.name}
                     />

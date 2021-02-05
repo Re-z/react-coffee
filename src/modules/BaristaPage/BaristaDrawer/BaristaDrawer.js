@@ -15,13 +15,14 @@ import {ordersSlice, postOrdersToDBThunk} from '../../../redux/slices/ordersSlic
 import {mapProductSize} from "../../../utils/productSizeMap";
 import {drawerStatusSlice} from "../../../redux/slices/drawerStatusSlice";
 import {snackbarSlice} from "../../../redux/slices/snackbarSlice";
-
+import styles from './BaristaDrawer.module.scss'
 
 export const BaristaDrawer = () => {
     const dispatch = useDispatch();
     const activeProduct = useSelector((state) => {return state.baristaActiveProduct.product});
     const [chosenSize, setChosenSize] = useState({});
     const [orderedProducts, setOrderedProducts] = useState([]);
+    console.log(styles.coffeeImg)
 
     useEffect(() => {
         //set initial value for active product size
@@ -94,14 +95,15 @@ export const BaristaDrawer = () => {
                         <CloseIcon />
                     </IconButton>
                 </Box>
-                <Box px={2}>
+                    <Box px={2}>
                     {activeProduct && (
                         <Card>
                             <CardMedia
-                                className="coffeeImg, coffeeImg_drawer"
+                                className={styles.coffeeImg}
                                 image={activeProduct.img}
                                 title={activeProduct.name}
                             />
+
                             <CardContent>
                                 <Typography
                                     gutterBottom
@@ -162,7 +164,7 @@ export const BaristaDrawer = () => {
                 orderedProducts.length !== 0 && (
                     <Box
                         mt={4}
-                        className="scrolableDiv"
+                        className={styles.scrolableDiv}
                         px={2}
                     >
                         <Box

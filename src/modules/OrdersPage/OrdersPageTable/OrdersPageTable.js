@@ -14,9 +14,12 @@ import {ordersSortingConfig} from "../OrdersFilters/configs/ordersSortingConfig"
 import {mapProductSize} from "../../../utils/productSizeMap";
 import Typography from "@material-ui/core/Typography";
 import {TablePagination} from "@material-ui/core";
+import styles from './OrdersPageTable.module.scss'
 
 const initialSort = ordersSortingConfig[0];
 const rowsPerPageOptions = [5,10,15,20]
+
+
 
 export const OrdersPageTable = (props) => {
    const [sortedOrders, setSortedOrders] = useState([]);
@@ -72,7 +75,7 @@ export const OrdersPageTable = (props) => {
                                             return (
                                                 <TableRow
                                                     key={index}
-                                                    className={index % 2 === 0 ? 'tableRowOdd' : ''}
+                                                    className={index % 2 === 0 ? styles.tableRowOdd : ''}
                                                 >
                                                     <TableCell>{ index + 1 }</TableCell>
                                                     <TableCell>{ order.name }</TableCell>
