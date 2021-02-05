@@ -6,7 +6,6 @@ import {useEffect} from "react";
 import {fetchProducts} from "../../../redux/slices/productsSlice";
 import {CircularProgress} from "@material-ui/core";
 
-
 export const BaristaPage = () => {
     const products = useSelector(state => state.products.items)
     const dispatch = useDispatch();

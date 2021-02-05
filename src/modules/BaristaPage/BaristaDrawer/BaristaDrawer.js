@@ -114,7 +114,7 @@ export const BaristaDrawer = () => {
                                     display="flex"
                                     justifyContent="space-between"
                                     alignItems="center">
-                                    <Typography>Choose size:</Typography>
+                                    <Typography>Size:</Typography>
                                     <Box>
                                         {
                                             activeProduct.sizes.map (size => {

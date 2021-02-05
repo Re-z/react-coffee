@@ -7,18 +7,25 @@ import Snackbar from '@material-ui/core/Snackbar';
 import  {Route, Switch} from 'react-router-dom'
 import {OrdersPage} from "./modules/OrdersPage/OrdersPage";
 import {snackbarSlice} from "./redux/slices/snackbarSlice";
+import {isTablet} from "./utils/customHooks/isTabletHook";
 
-const drawerWidth = 450;
 
 export const App = () => {
     const dispatch = useDispatch();
     const drawerStatus = useSelector((state) => {return state.drawerStatus.isOpen})
     const snackbarStatus = useSelector(state => state.snackbarSlice);
 
+    const drawerWidth = isTablet() ? 400 : 450;
+
+
     return (
         <Box pt={7}>
             <Header />
-            <Box component="main" className="mainWrap" pr={drawerStatus ? `${drawerWidth}px` : 0}>
+            <Box
+                component="main"
+                className="mainWrap"
+                pr={drawerStatus ? `${drawerWidth}px` : 0}
+            >
                 <Box py={6} px={2}>
                     <Switch>
                         <Route exact path="/" component={BaristaPage} />

@@ -4,7 +4,7 @@ import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import Card from "@material-ui/core/Card";
 import Grid from "@material-ui/core/Grid";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {drawerStatusSlice} from "../../../redux/slices/drawerStatusSlice";
 import {baristaActiveProductSlice} from "../../../redux/slices/baristaActiveProductSlice";
 
@@ -15,9 +15,15 @@ export const BaristaPageCard = (props) => {
         dispatch(baristaActiveProductSlice.actions.setBaristaActiveProduct(props.product));
         dispatch(drawerStatusSlice.actions.showDrawer());
     }
+    const isDrawerOpen = useSelector(state => state.drawerStatus.isOpen);
 
     return (
-        <Grid item xs={2}>
+        <Grid
+            item
+            sm={isDrawerOpen ? 6 : 4}
+            md={isDrawerOpen ? 4 : 3}
+            xl={2}
+        >
             <Card onClick={() => handleCardClick()}>
                 <CardActionArea>
                     <CardMedia
