@@ -5,6 +5,7 @@ On barista page, barista when he/she sells coffee or another drink, adds informa
 Another page, Orders page, was created for owners. It displays an information about total sells of drinks and helps owner to plan income and outcome according to information of previous periods.
 
 ### TODO:
+- Add proptypes
 - Add Idle timer
 - Fix dynamic DB sync on orders page when product is ordered
 
